@@ -27,6 +27,8 @@ public class Main {
                     octet = octet * 10 + ch - 48;
                 }
             }
+            ipInt = (ipInt << 8) | octet;       // assume there is not '/n' after the last row
+            set.add(ipInt);
 
         } catch (IOException e) {
             e.printStackTrace();
