@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        String filename = "src/ip_test.txt";
+        String filename = "src/ip_test.txt";        // file name
         Set<Integer> set = new HashSet<>();
 
         try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filename))) {
