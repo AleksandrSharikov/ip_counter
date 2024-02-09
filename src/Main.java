@@ -33,6 +33,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(set.size());
+        System.out.printf("File contains %d distinct IPs", set.size());
     }
 }
