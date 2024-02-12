@@ -19,6 +19,9 @@ public class Main {
 
             @Override
             public String toString() {                          // To see a list of distinct IPs
+                if(this.size() == 0){
+                    return "";
+                }
                 StringBuilder answer = new StringBuilder();
                 for (int record : this) {
                     for (int i = 3; i >= 0; i--) {
@@ -37,6 +40,7 @@ public class Main {
             int ch;
             int ipInt = 0;
 
+            if (bis.available() > 0){
             while ((ch = bis.read()) != -1) {
                 if (ch == '\n') {
                     ipInt = (ipInt << 8) | octet;
@@ -51,7 +55,7 @@ public class Main {
                 }
             }
             ipInt = (ipInt << 8) | octet;       // Assume there is not '\n' after the last row
-            set.add(ipInt);
+            set.add(ipInt);}
 
         } catch (IOException e) {
             e.printStackTrace();
