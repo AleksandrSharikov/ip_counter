@@ -59,7 +59,7 @@ public class Main {
         System.out.printf("File contains %d distinct IPs \n", set.size());
      //   System.out.printf("Set contains: \n%s\n",set.toString());
         System.out.printf("It contains 192.0.2.14 = %b\n",set.contains("192.0.2.14"));
-        System.out.printf("It contains 192.0.2.15 = %b",set.contains("192.0.2.17"));
+        System.out.printf("It contains 192.0.2.17 = %b",set.contains("192.0.2.17"));
 
     }
 }
