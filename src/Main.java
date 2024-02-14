@@ -1,71 +1,13 @@
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashSet;
+import frames.StartFrame;
 
+/**
+ * Main, just starts a first frame
+ * If you want to see bare parse logic, please look previous commit.
+ * There presented the same logic without JFrames
+ */
 public class Main {
     public static void main(String[] args) {
-        String filename = "src/ip_test.txt";        // File path
-        var set = new HashSet<Integer>(){
-            public boolean contains(String ipStr){          // Overloaded method to check IP as a string
-                int check = 0;
-                int i = 0;
-                String[] octetStr = ipStr.split("\\.");
-                for (String octet : octetStr){
-                    check |= Integer.parseInt(octet) << (8 * (3 - i++) );
-                }
-                return super.contains(check);
-            }
 
-            @Override
-            public String toString() {                          // To see a list of distinct IPs
-                if(this.size() == 0){
-                    return "";
-                }
-                StringBuilder answer = new StringBuilder();
-                for (int record : this) {
-                    for (int i = 3; i >= 0; i--) {
-                        answer.append((record >> 8 * i) & 0xFF) ;
-                        answer.append(i == 0 ? '\n' : '.');
-                    }
-                }
-                answer.deleteCharAt(answer.length() - 1);
-                return answer.toString();
-            }
-
-        };
-
-        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream(filename))) {
-            int octet = 0;
-            int ch;
-            int ipInt = 0;
-
-            if (bis.available() > 0){
-            while ((ch = bis.read()) != -1) {
-                if (ch == '\n') {
-                    ipInt = (ipInt << 8) | octet;
-                    set.add(ipInt);
-                    ipInt = 0;
-                    octet = 0;
-                } else if (ch == '.') {
-                    ipInt = (ipInt << 8) | octet;
-                    octet = 0;
-                } else if(ch != 13){
-                    octet = octet * 10 + ch - 48;
-                }
-            }
-            ipInt = (ipInt << 8) | octet;       // Assume there is not '\n' after the last row
-            set.add(ipInt);}
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.printf("File contains %d distinct IPs \n", set.size());
-     //   System.out.printf("Set contains: \n%s\n",set.toString());    // Commented to not spoil the result output
-        String test1 = "192.0.2.14";
-        String test2 = "192.0.2.17";
-        System.out.printf("It contains %s = %b\n", test1, set.contains(test1));
-        System.out.printf("It contains %s = %b", test2, set.contains(test2));
-
+        StartFrame s = new StartFrame();
     }
 }
